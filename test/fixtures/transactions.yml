@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  amount: 1.5
+  transaction_date: 2022-08-03
+  category: one
+
+two:
+  description: MyText
+  amount: 1.5
+  transaction_date: 2022-08-03
+  category: two
