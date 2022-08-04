@@ -21,13 +21,10 @@ If you have an idea or found a problem, [feel free to open a new issue](https://
 
 ## Creators
 
-**Leticia Fernandes**
+[**Leticia Fernandes**](https://github.com/fernandesleticia)
 
-- <https://github.com/fernandesleticia>
+[**Hugo Diniz**](https://github.com/hhldiniz)
 
-**Hugo Diniz**
-
-- <https://github.com/hhldiniz>
 
 ## Copyright and license
 
