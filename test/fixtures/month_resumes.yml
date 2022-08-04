@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  month: MyString
+  year: MyString
+  initial_budget: 1.5
+  final_budget: 1.5
+  percent_economy: 1.5
+
+two:
+  month: MyString
+  year: MyString
+  initial_budget: 1.5
+  final_budget: 1.5
+  percent_economy: 1.5

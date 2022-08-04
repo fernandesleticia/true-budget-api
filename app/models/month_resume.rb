@@ -1,0 +1,2 @@
+class MonthResume < ApplicationRecord
+end
