@@ -6,6 +6,38 @@ Provides API for [True Budget App](https://github.com/hhldiniz/true-budget-app)
 - Rails 6.1.6
 - PostgreSQL 12
 
+## Testing the app
+### Run the server
+```
+rails s
+```
+
+### Register an account
+```
+curl -XPOST -H "Content-Type: application/json" -d '{ "user": { "email": "leticia@example.com", "password": "12345678" } }' http://localhost:3000/users
+```
+
+### Login
+**Note: we're using the flag '-i' so the response includes headers (which contains the JWT token)**
+```
+curl -XPOST -i -H "Content-Type: application/json" -d '{ "user": { "email": "leticia@example.com", "password": "12345678" } }' http://localhost:3000/users/sign_in
+```
+
+
+### Making requests using the auth token returned in the last request response
+
+```
+curl -XPOST -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjU5OTk1MjAyLCJleHAiOjE2NjEyOTEyMDIsImp0aSI6IjY5NTE4NDE3LWMwOWMtNDRlNy04NmQ2LThhOGRlZWU3ZTQyNSJ9.PEhspmjdWN8NKgrqPuCyipVibMY19ymnx0DbsXyDPro" -H "Content-Type: application/json" -d '{ "group": { "name": "Essencial" } }' http://localhost:3000/groups
+```
+
+```
+curl -XGET -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjU5OTk1MjAyLCJleHAiOjE2NjEyOTEyMDIsImp0aSI6IjY5NTE4NDE3LWMwOWMtNDRlNy04NmQ2LThhOGRlZWU3ZTQyNSJ9.PEhspmjdWN8NKgrqPuCyipVibMY19ymnx0DbsXyDPro" -H "Content-Type: application/json" http://localhost:3000/groups/1
+```
+
+### Logout
+```
+curl -XDELETE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjU5OTk1MjAyLCJleHAiOjE2NjEyOTEyMDIsImp0aSI6IjY5NTE4NDE3LWMwOWMtNDRlNy04NmQ2LThhOGRlZWU3ZTQyNSJ9.PEhspmjdWN8NKgrqPuCyipVibMY19ymnx0DbsXyDPro" -H "Content-Type: application/json" http://localhost:3000/users/sign_out
+```
 ## Create env files
 ```
 cp "sample.env" ".env"
