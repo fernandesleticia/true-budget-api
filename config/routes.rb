@@ -5,5 +5,6 @@ Rails.application.routes.draw do
       registrations: 'users/registrations'
     }
 
-  resources :transactions, only: [:show]
+  resources :transactions
+  resources :groups
 end
