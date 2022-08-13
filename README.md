@@ -13,6 +13,10 @@ rails s
 ```
 
 ### Register an account
+**Note: use [bcrypt](https://github.com/bcrypt-ruby/bcrypt-ruby) to generate the password**
+```
+User.create(username: John Doe, password_digest: BCrypt::Password.create("my password"))
+```
 ```
 curl -XPOST -H "Content-Type: application/json" -d '{ "user": { "email": "leticia@example.com", "password": "12345678" } }' http://localhost:3000/users
 ```
@@ -22,7 +26,6 @@ curl -XPOST -H "Content-Type: application/json" -d '{ "user": { "email": "letici
 ```
 curl -XPOST -i -H "Content-Type: application/json" -d '{ "user": { "email": "leticia@example.com", "password": "12345678" } }' http://localhost:3000/users/sign_in
 ```
-
 
 ### Making requests using the auth token returned in the last request response
 
@@ -34,7 +37,7 @@ curl -XPOST -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwI
 curl -XGET -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjU5OTk1MjAyLCJleHAiOjE2NjEyOTEyMDIsImp0aSI6IjY5NTE4NDE3LWMwOWMtNDRlNy04NmQ2LThhOGRlZWU3ZTQyNSJ9.PEhspmjdWN8NKgrqPuCyipVibMY19ymnx0DbsXyDPro" -H "Content-Type: application/json" http://localhost:3000/groups/1
 ```
 
-### Logout
+### Sign out
 ```
 curl -XDELETE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjU5OTk1MjAyLCJleHAiOjE2NjEyOTEyMDIsImp0aSI6IjY5NTE4NDE3LWMwOWMtNDRlNy04NmQ2LThhOGRlZWU3ZTQyNSJ9.PEhspmjdWN8NKgrqPuCyipVibMY19ymnx0DbsXyDPro" -H "Content-Type: application/json" http://localhost:3000/users/sign_out
 ```
