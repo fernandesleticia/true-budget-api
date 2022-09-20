@@ -32,6 +32,8 @@ gem 'devise'
 gem 'devise-jwt'
 
 gem 'pg'
+gem 'sidekiq'
+gem 'redis-rails'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
