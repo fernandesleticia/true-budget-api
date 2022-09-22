@@ -1,0 +1,6 @@
+.git
+.dockerignore
+.env
+truebudgetapi/node_modules/
+truebudgetapi/vendor/bundle/
+truebudgetapi/tmp/
