@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2022_09_06_220544) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["category_id"], name: "index_transactions_on_category_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "user_preferences", force: :cascade do |t|
@@ -124,7 +125,6 @@ ActiveRecord::Schema.define(version: 2022_09_06_220544) do
   add_foreign_key "categories", "groups"
   add_foreign_key "category_budgets", "categories"
   add_foreign_key "transactions", "categories"
-  add_foreign_key "transactions", "users"
   add_foreign_key "user_preferences", "users"
   add_foreign_key "wallets", "users"
 end
