@@ -1,6 +1,4 @@
 class WalletsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @wallets = Wallet.all
     render json: @wallets
