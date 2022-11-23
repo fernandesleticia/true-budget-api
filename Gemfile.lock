@@ -216,6 +216,7 @@ DEPENDENCIES
   devise
   devise-jwt
   dotenv-rails
+  jwt
   listen (~> 3.3)
   pg
   puma (~> 5.0)

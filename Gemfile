@@ -31,6 +31,8 @@ gem 'strong_migrations'
 gem 'devise'
 gem 'devise-jwt'
 
+gem 'jwt'
+
 gem 'pg'
 gem 'sidekiq'
 gem 'redis-rails'
