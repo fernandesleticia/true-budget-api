@@ -1,0 +1,3 @@
+shared:
+  secret: <%= ENV["SECRET"] %>
+  token_expiration_time: <%= ENV.fetch("TOKEN_EXPIRATION_TIME", 3600) %>

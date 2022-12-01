@@ -1,6 +1,6 @@
 class JsonWebToken
   def self.encode(payload)
-    payload[:exp] = token_expires_in
+    payload[:exp] = token_expiration_time
     JWT.encode(payload, secret_key, "RS256")
   end
 
@@ -11,11 +11,11 @@ class JsonWebToken
 
   private
 
-  def token_expires_in
-    1.minute.from_now
+  def token_expiration_time
+    Rails.application.config_for(:authentication).token_expiration_time.seconds.from_now.to_i
   end
 
   def secret_key
-    'secret key'
+    OpenSSL::PKey::RSA.new(Rails.application.config_for(:authentication).secret)
   end
 end
