@@ -26,6 +26,8 @@ module TrueBudgetApi
     config.log_level = :debug
     config.log_tags  = [:subdomain, :uuid]
 
+    config.eager_load_paths << Rails.root.join("lib")
+
     config.cache_store = :redis_store, ENV['CACHE_URL'],
       { namespace: 'true_budget_api::cache' }
 

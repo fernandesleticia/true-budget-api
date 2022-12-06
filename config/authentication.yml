@@ -1,3 +1,4 @@
 shared:
-  secret: <%= ENV["SECRET"] %>
+  private_key: <%= ENV["PRIVATE_KEY"] %>
+  public_key: <%= ENV["PUBLIC_KEY"] %>
   token_expiration_time: <%= ENV.fetch("TOKEN_EXPIRATION_TIME", 3600) %>
