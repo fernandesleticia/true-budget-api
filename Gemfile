@@ -20,9 +20,6 @@ gem 'rack-cors'
 gem 'scenic'
 gem 'strong_migrations'
 
-gem 'devise'
-gem 'devise-jwt'
-
 gem 'jwt'
 
 gem 'pg'
