@@ -1,20 +1,28 @@
 class BaseController < ActionController::Base
-  before_action :authenticate_request
+  before_action :authorize_request
 
-  class UnauthorizedRequestError < StandarError; end
+  class UnauthorizedRequestError < StandardError; end
 
   private
 
-  def authenticate_request
+  def authorize_request
     raise UnauthorizedRequestError, I18n.t("authorization.token_not_present") unless authorization_token.present?
+  
+    authenticate_jwt
   end
 
-  def current_user
+  def authenticate_jwt
+    return unless auth_token.expired?
 
+    raise UnauthorizedRequestError, I18n.t("authorization.expired")
   end
 
-  def decoded_user
-    JsonWebToken.decode(authorization_token)
+  def auth_token
+    AuthToken.find_by(jwt_token: authorization_token)
+  end
+
+  def user_id
+    JsonWebToken.decode(authorization_token)["user_id"]
   end
 
   def authorization_token
