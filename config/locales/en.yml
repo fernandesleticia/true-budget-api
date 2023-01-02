@@ -37,3 +37,4 @@ en:
     warn_balace: Your balance for the current month is low
   authorization:
     token_not_present: Authorization token not present
+    expired: Authorization token expired

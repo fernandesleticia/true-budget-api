@@ -1,24 +1,28 @@
-class CategoriesController < ApplicationController
+class CategoriesController < BaseController
   def index
-    @categories = Category.all
-    render json: @categories 
+    render json: Category.all, status: :ok
   end
 
   def show
-    @category = Category.find(params[:id])
-    render json: @category
+    category = Category.find_by(id: params[:id])
+    render json: category, status: :ok
   end
 
   def create
-    @category = Category.new(category_params)
-    @category.save
+    category = Category.new(create_params)
 
-    render json: @category
+    response = if category.save
+      { json: { message: I18n.t("category.created"), category: category }, status: :ok }
+    else
+      { json: { message: I18n.t("category.error_creating") }, status: :unprocessable_entity }
+    end
+
+    render response
   end
 
   private
 
-  def category_params
+  def create_params
     params.require(:category).permit(:name, :group_id)
   end
 end
