@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :group do
-    name { "Essential" }
+    name { SecureRandom.hex }
   end
 end
  

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :category do
-    name { "Food" }
+    name { SecureRandom.hex }
     group
   end
 end

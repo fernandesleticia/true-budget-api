@@ -1,11 +1,13 @@
 class CategoriesController < BaseController
-  def index
-    render json: Category.all, status: :ok
-  end
-
   def show
     category = Category.find_by(id: params[:id])
-    render json: category, status: :ok
+
+    render json: category.to_hash, status: :ok
+  end
+
+  def index
+    categories = Category.all
+    render json: Category.serialize(categories), status: :ok
   end
 
   def create
