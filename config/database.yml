@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   username: postgres
   password: postgres
-  host: localhost
+  host: db
   port: 5432
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
