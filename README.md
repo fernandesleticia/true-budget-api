@@ -6,12 +6,39 @@ Provides API for [True Budget App](https://github.com/hhldiniz/true-budget-app)
 - Rails 6.1.6
 - PostgreSQL 12
 
-## Testing the app
-### Run the server
+## Running the app
+### Build the image
 ```
-rails s
+$ docker compose build
 ```
 
+### Instantiate the container
+```
+docker compose up
+```
+
+### Create the database (run this in another terminal)
+```
+docker compose run web rake db:create
+```
+
+### To stop the app
+```
+docker compose down
+```
+
+### To restart the app
+```
+docker compose up
+```
+
+### To rebuild the application
+**Note: Changes to the Gemfile or the compose file needs a rebuild**
+
+**Note 2: Some changes require only *docker compose up --build*, but a full rebuild requires a re-run of *docker compose run web bundle install* to sync changes in the Gemfile.lock to the host, followed by *docker compose up --build*.**
+```
+docker compose up
+```
 ### Register an account
 **Note: use [bcrypt](https://github.com/bcrypt-ruby/bcrypt-ruby) to generate the password**
 ```
