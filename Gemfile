@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.4'
+ruby '3.1.2'
 
 gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
 gem 'sqlite3', '~> 1.4'
@@ -43,5 +43,7 @@ group :test do
   gem "shoulda-matchers", "~> 5.1"
   gem "timecop", "~> 0.9"
 end
+
+gem 'net-smtp', require: false
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
