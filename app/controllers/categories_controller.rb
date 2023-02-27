@@ -25,6 +25,8 @@ class CategoriesController < BaseController
   private
 
   def create_params
-    params.require(:category).permit(:name, :group_id)
+    params
+      .require(:category)
+      .permit(:name, :group_id)
   end
 end

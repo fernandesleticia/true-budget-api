@@ -3,6 +3,10 @@ class BaseController < ActionController::Base
 
   class UnauthorizedRequestError < StandardError; end
 
+  rescue_from UnauthorizedRequestError do |e|
+    render error_response(e.message, status: :unauthorized)
+  end
+
   private
 
   def authorize_request
@@ -12,9 +16,9 @@ class BaseController < ActionController::Base
   end
 
   def authenticate_jwt
-    return unless auth_token.expired?
+    return unless !auth_token || auth_token.expired?
 
-    raise UnauthorizedRequestError, I18n.t("authorization.expired")
+    raise UnauthorizedRequestError, I18n.t("authorization.user_unauthorized")
   end
 
   def auth_token
@@ -27,5 +31,10 @@ class BaseController < ActionController::Base
 
   def authorization_token
     request.headers["Authorization"]
+  end
+
+  def error_response(error_message, status: :bad_request)
+    errors = Array(error_message)
+    { json: { errors: errors }, status: status }
   end
 end

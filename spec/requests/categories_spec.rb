@@ -12,6 +12,22 @@ RSpec.describe "/categories", type: :request do
     }
   end
 
+  context "authentication" do
+    let(:path) { categories_path }
+
+    it "should require an authentication token" do
+      get path, headers: headers.merge("Authorization" => "")
+      expect(response.status).to eq 401
+      expect(JSON.parse(response.body)["errors"]).to eq([I18n.t("authorization.token_not_present")])
+    end
+
+    it "should require a valid authentication token" do
+      get path, headers: headers.merge("Authorization" => "Invalid Token")
+      expect(response.status).to eq 401
+      expect(JSON.parse(response.body)["errors"]).to eq([I18n.t("authorization.user_unauthorized")])
+    end
+  end
+
   context "show" do
     subject { get path, headers: headers }
 
