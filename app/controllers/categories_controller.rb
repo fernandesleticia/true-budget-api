@@ -6,6 +6,8 @@ class CategoriesController < BaseController
   end
 
   def index
+    authorize Category, :index?
+
     categories = Category.all
     render json: Category.serialize(categories), status: :ok
   end

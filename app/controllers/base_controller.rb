@@ -1,4 +1,6 @@
 class BaseController < ActionController::Base
+  include Pundit::Authorization
+
   before_action :authorize_request
 
   class UnauthorizedRequestError < StandardError; end
