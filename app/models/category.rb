@@ -9,13 +9,13 @@ class Category < ApplicationRecord
   def to_hash
     ATTRIBUTES.map do |field|
       [field, send(field)]
-    end.to_h
+     end.to_h
   end
-
-  def self.serialize(items)
-    items.map do |item|
+  
+  def self.serialize(resources)
+    resources.map do |resource|
       ATTRIBUTES.map do |field|
-        [field, item.send(field)]
+        [field, resource.send(field)]
       end.to_h
     end
   end

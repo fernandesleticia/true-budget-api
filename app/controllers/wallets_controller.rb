@@ -1,20 +1,24 @@
-class WalletsController < ApplicationController
+class WalletsController < BaseController
   def index
-    @wallets = Wallet.all
-    render json: @wallets
+    wallets = Transaction.all
+    render json: Wallet.serialize(wallets), status: :ok
   end
 
   def show
-    @wallet = Wallet.find(params[:id])
-
-    render json: @wallet
+    wallet = Wallet.find(params[:id])
+    render json: wallet.to_hash, status: :ok
   end
 
   def create
-    @wallet = Wallet.new(wallet_params)
-    @wallet.save
+    wallet = Wallet.new(wallet_params)
 
-    render json: @wallet
+    response = if wallet.save
+      { json: { message: I18n.t("wallet.created"), wallet: wallet }, status: :ok }
+    else
+      { json: { message: I18n.t("wallet.error_creating") }, status: :unprocessable_entity }
+    end
+
+    render response
   end
 
   private
