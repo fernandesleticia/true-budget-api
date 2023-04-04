@@ -11,10 +11,10 @@ class Wallet < ApplicationRecord
     end.to_h
   end
 
-  def self.serialize(items)
-    items.map do |item|
+  def self.serialize(resources)
+    resources.map do |resource|
       ATTRIBUTES.map do |field|
-        [field, item.send(field)]
+        [field, resource.send(field)]
       end.to_h
     end
   end
