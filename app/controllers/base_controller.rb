@@ -9,6 +9,14 @@ class BaseController < ActionController::Base
     render error_response(e.message, status: :unauthorized)
   end
 
+  rescue_from Pundit::NotAuthorizedError do |e|
+    render error_response(e.message, status: :unauthorized)
+  end
+
+  def current_user
+    User.find_by_id(user_id)
+  end
+
   private
 
   def authorize_request

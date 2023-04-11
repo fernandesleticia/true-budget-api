@@ -2,7 +2,9 @@ require "rails_helper"
 
 RSpec.describe "/categories", type: :request do
   let!(:auth_token) { create(:auth_token, jwt_token: authorization_token, expiration_time: 1.hour.from_now.to_i) }
-  let(:authorization_token) { SecureRandom.base58(24) }
+  let(:payload) { { user_id: user.id } }
+  let(:user) { create(:user) }
+  let(:authorization_token) { JsonWebToken.encode(payload) }
 
   let(:headers) do
     {
@@ -47,6 +49,12 @@ RSpec.describe "/categories", type: :request do
 
     let(:path) { categories_path }
     let!(:categories) { create_list(:category, 2) }
+
+    it "should return an error message when not authorized" do
+      allow_any_instance_of(CategoryPolicy).to receive(:index?).and_raise(Pundit::NotAuthorizedError)
+      get path, headers: headers
+      expect(response.status).to eq 401
+    end
 
     it "should return the categories" do
       subject
