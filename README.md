@@ -7,14 +7,25 @@ Provides API for [True Budget App](https://github.com/hhldiniz/true-budget-app)
 - PostgreSQL 12
 
 ## Running the app
-### Build the image
+### Build the image based on the dockerfile
 ```
 $ docker compose build
+```
+**note: if you aren't using docker compose: docker build .**
+
+### Check that your image got created
+```
+$ docker images
 ```
 
 ### Instantiate the container
 ```
 docker compose up
+```
+**note: if you aren't using docker compose:**
+use -p flag to specify the host machine port and the container exposed port, so they can comunicate
+```
+docker run -p 3000:3000 <IMAGE ID>
 ```
 
 ### Create the database (run this in another terminal)
