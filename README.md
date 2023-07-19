@@ -11,7 +11,17 @@ Provides API for [True Budget App](https://github.com/hhldiniz/true-budget-app)
 ```
 $ docker compose build
 ```
-**note: if you aren't using docker compose: docker build .**
+
+### Build the image based on the dockerfile (without the docker compose)
+```
+$ docker build .
+```
+
+use -t to assign a custom name and tag: -t name:tag
+
+```
+$ docker build -t demo:latest .
+```
 
 ### Check that your image got created
 ```
@@ -22,10 +32,31 @@ $ docker images
 ```
 docker compose up
 ```
-**note: if you aren't using docker compose:**
+
+### Instantiate the container (without the docker compose)
 use -p flag to specify the host machine port and the container exposed port, so they can comunicate
 ```
 docker run -p 3000:3000 <IMAGE ID>
+```
+
+use -it to create an iteractive session (if you need to provide input)
+```
+docker run -it <IMAGE ID>
+```
+
+use --name to create a container assigning a name to it.
+```
+docker run -it --name container_name_app <IMAGE ID>
+```
+
+use --rm flag to ensure the containers are removed automatically when stopped
+```
+docker run -p 3000:3000 -d --name app_name --rm demo:latest
+```
+
+### Check that the process is running
+```
+docker ps
 ```
 
 ### Create the database (run this in another terminal)
@@ -33,14 +64,35 @@ docker run -p 3000:3000 <IMAGE ID>
 docker compose run web rake db:create
 ```
 
-### To stop the app
+### Stop the container
 ```
 docker compose down
 ```
 
-### To restart the app
+### Stop the container (without the docker compose)
+```
+docker stop <container name>
+```
+**note: stop does not delete the container, you can still see it with docker ps -a**
+
+### To restart a stopped container
 ```
 docker compose up
+```
+
+### To restart a stopped container (without the docker compose)
+```
+docker start <container name>
+```
+
+**note: use -a flag if you need to start in the attached mode**
+```
+docker start -i -a <container name>
+```
+
+**note: use -d flag if you need to start in the detached mode (default)**
+```
+docker start -i -d <container name>
 ```
 
 ### To rebuild the application
@@ -50,6 +102,33 @@ docker compose up
 ```
 docker compose up
 ```
+
+### Delete a container (or multiple containers)
+```
+docker rm container_name
+```
+
+```
+docker rm container_name_1 container_name_2
+```
+
+### Delete an image and its layers
+```
+docker rmi <IMAGE ID>
+```
+
+### Delete all images that have no tags
+
+```
+docker image prune
+```
+
+### Delete all images even if they have a tag
+
+```
+docker image prune -a
+```
+
 ### Register an account
 **Note: use [bcrypt](https://github.com/bcrypt-ruby/bcrypt-ruby) to generate the password**
 ```
