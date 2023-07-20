@@ -28,28 +28,35 @@ $ docker build -t demo:latest .
 $ docker images
 ```
 
+### Renaming/Retagging an image
+**note: this creates a clone of the image with another name**
+```
+$ docker tag old_name new name
+```
+**example: docker tag demo:latest leticia/true-buudget-api**
+
 ### Instantiate the container
 ```
 docker compose up
 ```
 
 ### Instantiate the container (without the docker compose)
-use -p flag to specify the host machine port and the container exposed port, so they can comunicate
+**use -p flag to specify the host machine port and the container exposed port, so they can comunicate**
 ```
 docker run -p 3000:3000 <IMAGE ID>
 ```
 
-use -it to create an iteractive session (if you need to provide input)
+**use -it to create an iteractive session (if you need to provide input)**
 ```
 docker run -it <IMAGE ID>
 ```
 
-use --name to create a container assigning a name to it.
+**use --name to create a container assigning a name to it.**
 ```
 docker run -it --name container_name_app <IMAGE ID>
 ```
 
-use --rm flag to ensure the containers are removed automatically when stopped
+**use --rm flag to ensure the containers are removed automatically when stopped**
 ```
 docker run -p 3000:3000 -d --name app_name --rm demo:latest
 ```
@@ -170,9 +177,6 @@ If you have an idea or found a problem, [feel free to open a new issue](https://
 ## Creators
 
 [**Leticia Fernandes**](https://github.com/fernandesleticia)
-
-[**Hugo Diniz**](https://github.com/hhldiniz)
-
 
 ## Copyright and license
 
