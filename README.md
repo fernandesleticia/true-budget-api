@@ -17,7 +17,7 @@ $ docker compose build
 $ docker build .
 ```
 
-use -t to assign a custom name and tag: -t name:tag
+**note: use -t to assign a custom name and tag to the image: -t name:tag**
 
 ```
 $ docker build -t demo:latest .
@@ -46,7 +46,7 @@ docker compose up
 docker run -p 3000:3000 <IMAGE ID>
 ```
 
-**use -it to create an iteractive session (if you need to provide input)**
+**use -it to run the container in iteractive mode (the container is then prepared to receive input via the command prompt. You can stop the container with CTRL + C when using the -it flag)**
 ```
 docker run -it <IMAGE ID>
 ```
@@ -57,11 +57,13 @@ docker run -it --name container_name_app <IMAGE ID>
 ```
 
 **use --rm flag to ensure the containers are removed automatically when stopped**
+**use -d flag to run the container in detached mode (output printed by the container is not visible, the command prompt / terminal does NOT wait for the container to stop)**
 ```
 docker run -p 3000:3000 -d --name app_name --rm demo:latest
 ```
 
 ### Check that the process is running
+**note: use -a flag to list all the containers, including the stopped ones**
 ```
 docker ps
 ```
@@ -117,6 +119,11 @@ docker rm container_name
 
 ```
 docker rm container_name_1 container_name_2
+```
+
+### Removes all stopped containers
+```
+docker container prune
 ```
 
 ### Delete an image and its layers
