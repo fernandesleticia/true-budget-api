@@ -21,6 +21,13 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
+# Adds an anonymous volume
+# Each time we create a container, a new anonymous volume is created for it
+# So the data created inside the container will not be assessible on a new container
+# If the container is created with the --rm flag, this volume is deleted along with the container when it stops
+# If the container is not created with the --rm flag, the volume will remain even after the container is deleted
+# VOLUME ["/temp"]
+
 # export the port from the docker container to the host machine
 EXPOSE 3000
 
